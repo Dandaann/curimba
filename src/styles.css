@@ -19,6 +19,13 @@
  */
 
 @theme inline {
+  --font-display: "Anton", sans-serif;
+  --font-sans: "DM Sans", sans-serif;
+  --color-olive: var(--olive);
+  --color-terracotta: var(--terracotta);
+  --color-mustard: var(--mustard);
+  --color-earth: var(--earth);
+  --color-cream: var(--cream);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -62,26 +69,31 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --radius: 0.75rem;
+  --cream: oklch(0.951 0.016 82);
+  --olive: oklch(0.345 0.05 142);
+  --terracotta: oklch(0.565 0.157 42);
+  --mustard: oklch(0.711 0.142 82);
+  --earth: oklch(0.29 0.03 40);
+  --background: var(--cream);
+  --foreground: var(--earth);
+  --card: oklch(0.97 0.012 82);
+  --card-foreground: var(--earth);
+  --popover: var(--cream);
+  --popover-foreground: var(--earth);
+  --primary: var(--terracotta);
+  --primary-foreground: var(--cream);
+  --secondary: var(--olive);
+  --secondary-foreground: var(--cream);
+  --muted: oklch(0.91 0.02 80);
+  --muted-foreground: oklch(0.45 0.03 45);
+  --accent: var(--mustard);
+  --accent-foreground: var(--earth);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --destructive-foreground: var(--cream);
+  --border: oklch(0.85 0.03 75);
+  --input: oklch(0.85 0.03 75);
+  --ring: var(--terracotta);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -142,3 +154,11 @@
     color: var(--color-foreground);
   }
 }
+
+@utility font-display { font-family: var(--font-display); letter-spacing: 0.01em; text-transform: uppercase; line-height: 0.95; }
+@utility pattern-geo {
+  background-image: repeating-linear-gradient(45deg, color-mix(in oklab, currentColor 7%, transparent) 0 2px, transparent 2px 22px), repeating-linear-gradient(-45deg, color-mix(in oklab, currentColor 7%, transparent) 0 2px, transparent 2px 22px);
+}
+@utility poster { box-shadow: 6px 6px 0 var(--earth); transition: transform .25s, box-shadow .25s; &:hover { transform: translate(-4px,-4px) rotate(-1deg); box-shadow: 12px 12px 0 var(--earth); } }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); }
