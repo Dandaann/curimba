@@ -1,12 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Instagram, Menu, X, MapPin, Phone, ArrowRight } from "lucide-react";
+import { Instagram, Menu, X, MapPin, Phone, ArrowRight, MessageCircle } from "lucide-react";
 import p1 from "@/assets/p1.jpg";
 import p2 from "@/assets/p2.jpg";
 import p3 from "@/assets/p3.jpg";
 import p4 from "@/assets/p4.jpg";
 
 const IG = "https://www.instagram.com/curimbaproducoes/";
+const WHATSAPP =
+  "https://api.whatsapp.com/send/?phone=553199951922&text=Ol%C3%A1%21+Gratid%C3%A3o+por+entrar+em+contato.+Em+qual+de+nossos+servi%C3%A7os+voc%C3%AA+tem+interesse%3F+&type=phone_number&app_absent=0";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -137,9 +139,12 @@ function Index() {
         <div className="relative mx-auto max-w-6xl">
           <h2 className="font-display text-6xl md:text-8xl">Quer produzir <span className="text-mustard">com a gente?</span></h2>
           <p className="mt-6 text-xl opacity-90">Fortaleça sua arte com quem vive a cultura preta!</p>
+          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="group mt-10 inline-flex items-center gap-3 rounded-lg bg-mustard px-7 py-4 font-bold uppercase tracking-wide text-earth shadow-[6px_6px_0_var(--terracotta)] transition-all hover:-translate-y-1 hover:bg-cream">
+            Fale com a gente <MessageCircle className="h-5 w-5 transition-transform group-hover:scale-110" />
+          </a>
           <div className="mt-12 grid gap-5 md:grid-cols-3">
-            <div className="flex items-start gap-3 rounded-lg bg-olive p-5"><MapPin className="h-6 w-6 shrink-0 text-mustard" /><span>[DIGITE SEU ENDEREÇO AQUI]</span></div>
-            <div className="flex items-start gap-3 rounded-lg bg-terracotta p-5"><Phone className="h-6 w-6 shrink-0" /><span>[DIGITE SEU TELEFONE AQUI]</span></div>
+            <div className="flex items-start gap-3 rounded-lg bg-olive p-5"><MapPin className="h-6 w-6 shrink-0 text-mustard" /><span>Av. dos Esportes, 653<br />Vila dos Marmiteiros</span></div>
+            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="flex items-start gap-3 rounded-lg bg-terracotta p-5 transition-transform hover:-translate-y-1"><Phone className="h-6 w-6 shrink-0" /><span className="font-bold">(31) 99951-922<br /><span className="text-sm font-normal opacity-90">Chame no WhatsApp</span></span></a>
             <a href={IG} target="_blank" rel="noreferrer" className="flex items-start gap-3 rounded-lg bg-mustard p-5 font-bold text-earth transition-transform hover:-translate-y-1"><Instagram className="h-6 w-6 shrink-0" />@curimbaproducoes</a>
           </div>
           <p className="mt-16 border-t border-cream/20 pt-6 text-sm opacity-70">© {new Date().getFullYear()} Curimba Produções Cultural</p>
