@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { Instagram, Menu, X, MapPin, Phone, ArrowRight, MessageCircle } from "lucide-react";
+import { useEffect, useState, type ChangeEvent } from "react";
+import { Instagram, Menu, X, MapPin, Phone, ArrowRight, MessageCircle, Camera } from "lucide-react";
 import p1 from "@/assets/p1.jpg";
 import p2 from "@/assets/p2.jpg";
 import p3 from "@/assets/p3.jpg";
@@ -26,9 +26,35 @@ export const Route = createFileRoute("/")({
 
 const links = [
   ["Missão", "#missao"],
+  ["Quem Somos", "#quem-somos"],
   ["Serviços", "#servicos"],
   ["Vitrine", "#vitrine"],
   ["Contato", "#contato"],
+];
+
+const teamMembers = [
+  {
+    id: "naiara",
+    name: "Naiara",
+    role: "Direção & Produção Executiva",
+    bio: "Articuladora cultural e produtora executiva dedicada a fortalecer e projetar a potência da arte preta e periférica.",
+    accentBg: "bg-terracotta text-cream",
+    badgeBg: "bg-mustard text-earth",
+    placeholderBg: "bg-olive text-cream",
+    number: "01",
+    defaultPhoto: "",
+  },
+  {
+    id: "juventino",
+    name: "Juventino",
+    role: "Direção Artística & Cultural",
+    bio: "Guardião do ritmo, da ancestralidade e do tambor, conduzindo vivências, oficinas e produções que conectam memória e futuro.",
+    accentBg: "bg-olive text-cream",
+    badgeBg: "bg-terracotta text-cream",
+    placeholderBg: "bg-earth text-cream",
+    number: "02",
+    defaultPhoto: "",
+  },
 ];
 
 const services = [
@@ -49,6 +75,39 @@ const projects = [
 
 function Index() {
   const [open, setOpen] = useState(false);
+  const [photos, setPhotos] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("curimba_team_photos");
+      if (saved) {
+        setPhotos(JSON.parse(saved));
+      }
+    } catch {
+      // ignore storage errors
+    }
+  }, []);
+
+  const handlePhotoUpload = (id: string, e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === "string") {
+        setPhotos((prev) => {
+          const next = { ...prev, [id]: reader.result as string };
+          try {
+            localStorage.setItem("curimba_team_photos", JSON.stringify(next));
+          } catch {
+            // ignore quota errors
+          }
+          return next;
+        });
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
@@ -101,6 +160,92 @@ function Index() {
           <p className="text-2xl leading-relaxed md:text-3xl">
             A Curimba nasce do <strong className="text-olive">tambor</strong> e da necessidade. Do direito de existir, criar e ocupar. Fazemos <strong className="text-terracotta">por preto e para preto</strong> — com arte, afeto e responsabilidade. Aqui, a cultura é resistência, e cada produção é um ato de memória e futuro.
           </p>
+        </div>
+      </section>
+
+      <section id="quem-somos" className="relative scroll-mt-20 border-t border-border px-5 py-20 md:py-28">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <p className="mb-3 inline-block rounded-md bg-olive px-3 py-1 text-xs font-bold uppercase tracking-widest text-cream">
+                Nossa Raiz
+              </p>
+              <h2 className="font-display text-5xl md:text-7xl">
+                Quem <span className="text-terracotta">Somos</span>
+              </h2>
+            </div>
+            <p className="max-w-xl text-lg leading-relaxed opacity-90 md:text-xl">
+              Quem faz a Curimba pulsar no dia a dia, construindo pontes entre ancestralidade, território e produção cultural.
+            </p>
+          </div>
+
+          <div className="grid gap-10 md:grid-cols-2">
+            {teamMembers.map((member) => {
+              const photoSrc = photos[member.id] || member.defaultPhoto;
+              return (
+                <article
+                  key={member.id}
+                  className={`poster ${member.accentBg} relative flex flex-col overflow-hidden rounded-lg`}
+                >
+                  <div className="pattern-geo pointer-events-none absolute inset-0" />
+
+                  <div className={`relative aspect-[4/5] w-full overflow-hidden ${member.placeholderBg}`}>
+                    <div className="pattern-geo absolute inset-0 opacity-60" />
+                    <span className="font-display absolute left-5 top-5 z-10 rounded bg-earth/80 px-2.5 py-1 text-lg text-cream">
+                      {member.number}
+                    </span>
+
+                    {photoSrc ? (
+                      <img
+                        src={photoSrc}
+                        alt={`Foto de ${member.name}`}
+                        className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                      />
+                    ) : (
+                      <div className="relative flex h-full w-full flex-col items-center justify-center p-8 text-center">
+                        <div className="mb-4 flex h-24 w-24 items-center justify-center rounded-full border-2 border-dashed border-cream/50 bg-earth/30">
+                          <span className="font-display text-5xl text-mustard">
+                            {member.name[0]}
+                          </span>
+                        </div>
+                        <p className="font-display text-2xl tracking-wide text-cream">
+                          Espaço para foto de {member.name}
+                        </p>
+                        <p className="mt-2 max-w-xs text-sm text-cream/80">
+                          Clique no botão abaixo para selecionar a foto de {member.name}
+                        </p>
+                      </div>
+                    )}
+
+                    <label className="absolute right-4 bottom-4 z-10 inline-flex cursor-pointer items-center gap-2 rounded-md bg-mustard px-4 py-2 text-xs font-bold uppercase tracking-wider text-earth shadow-[4px_4px_0_var(--earth)] transition-transform hover:-translate-y-0.5 hover:bg-cream">
+                      <Camera className="h-4 w-4" />
+                      {photoSrc ? "Trocar foto" : "Adicionar foto"}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => handlePhotoUpload(member.id, e)}
+                      />
+                    </label>
+                  </div>
+
+                  <div className="relative flex flex-1 flex-col justify-between p-6 md:p-8">
+                    <div>
+                      <span className={`inline-block rounded px-3 py-1 text-xs font-bold uppercase tracking-widest ${member.badgeBg}`}>
+                        {member.role}
+                      </span>
+                      <h3 className="font-display mt-3 text-5xl md:text-6xl">
+                        {member.name}
+                      </h3>
+                      <p className="mt-4 text-base leading-relaxed opacity-95 md:text-lg">
+                        {member.bio}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
         </div>
       </section>
 
