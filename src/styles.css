@@ -5,22 +5,22 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
+ * Manual de Marca — Curimba Produções
  *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
+ * Tipografia principal: Bahiana (--font-display)
+ * Tipografia secundária: Montserrat (--font-sans)
  *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * Paleta oficial:
+ *   --terracotta: #8a4011
+ *   --cream:      #dcceae
+ *   --earth:      #252715
+ *   --olive:      #798321
+ *   --mustard:    #c09625
  */
 
 @theme inline {
-  --font-display: "Anton", sans-serif;
-  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Bahiana", cursive, sans-serif;
+  --font-sans: "Montserrat", sans-serif;
   --color-olive: var(--olive);
   --color-terracotta: var(--terracotta);
   --color-mustard: var(--mustard);
@@ -70,65 +70,63 @@
 
 :root {
   --radius: 0.75rem;
-  --cream: oklch(0.935 0.022 78);
-  --olive: oklch(0.275 0.048 142);
-  --terracotta: oklch(0.51 0.155 44);
-  --mustard: oklch(0.73 0.165 68);
-  --earth: oklch(0.185 0.028 45);
-  --background: oklch(0.215 0.03 45);
-  --foreground: var(--cream);
-  --card: oklch(0.255 0.034 45);
-  --card-foreground: var(--cream);
-  --popover: oklch(0.23 0.03 45);
-  --popover-foreground: var(--cream);
-  --primary: var(--terracotta);
-  --primary-foreground: var(--cream);
-  --secondary: var(--olive);
-  --secondary-foreground: var(--cream);
-  --muted: oklch(0.25 0.032 45);
-  --muted-foreground: oklch(0.78 0.03 75);
-  --accent: var(--mustard);
-  --accent-foreground: var(--earth);
+  --terracotta: #8a4011;
+  --cream: #dcceae;
+  --earth: #252715;
+  --olive: #798321;
+  --mustard: #c09625;
+  --background: #252715;
+  --foreground: #dcceae;
+  --card: #2f321c;
+  --card-foreground: #dcceae;
+  --popover: #252715;
+  --popover-foreground: #dcceae;
+  --primary: #8a4011;
+  --primary-foreground: #dcceae;
+  --secondary: #798321;
+  --secondary-foreground: #dcceae;
+  --muted: #2d301a;
+  --muted-foreground: #c4b594;
+  --accent: #c09625;
+  --accent-foreground: #252715;
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: var(--cream);
-  --border: oklch(0.33 0.038 48);
-  --input: oklch(0.33 0.038 48);
-  --ring: var(--mustard);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.185 0.028 45);
-  --sidebar-foreground: var(--cream);
-  --sidebar-primary: var(--mustard);
-  --sidebar-primary-foreground: var(--earth);
-  --sidebar-accent: oklch(0.255 0.034 45);
-  --sidebar-accent-foreground: var(--cream);
-  --sidebar-border: oklch(0.33 0.038 48);
-  --sidebar-ring: var(--mustard);
+  --destructive-foreground: #dcceae;
+  --border: #434729;
+  --input: #434729;
+  --ring: #c09625;
+  --chart-1: #8a4011;
+  --chart-2: #798321;
+  --chart-3: #c09625;
+  --chart-4: #dcceae;
+  --chart-5: #252715;
+  --sidebar: #252715;
+  --sidebar-foreground: #dcceae;
+  --sidebar-primary: #c09625;
+  --sidebar-primary-foreground: #252715;
+  --sidebar-accent: #2f321c;
+  --sidebar-accent-foreground: #dcceae;
+  --sidebar-border: #434729;
+  --sidebar-ring: #c09625;
 }
 
 .dark {
-  --background: oklch(0.185 0.028 45);
-  --foreground: var(--cream);
-  --card: oklch(0.235 0.032 45);
-  --card-foreground: var(--cream);
-  --popover: oklch(0.235 0.032 45);
-  --popover-foreground: var(--cream);
-  --primary: var(--terracotta);
-  --primary-foreground: var(--cream);
-  --secondary: var(--olive);
-  --secondary-foreground: var(--cream);
-  --muted: oklch(0.24 0.03 45);
-  --muted-foreground: oklch(0.78 0.03 75);
-  --accent: var(--mustard);
-  --accent-foreground: var(--earth);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: var(--cream);
-  --border: oklch(0.33 0.038 48);
-  --input: oklch(0.33 0.038 48);
-  --ring: var(--mustard);
+  --background: #252715;
+  --foreground: #dcceae;
+  --card: #2f321c;
+  --card-foreground: #dcceae;
+  --popover: #252715;
+  --popover-foreground: #dcceae;
+  --primary: #8a4011;
+  --primary-foreground: #dcceae;
+  --secondary: #798321;
+  --secondary-foreground: #dcceae;
+  --muted: #2d301a;
+  --muted-foreground: #c4b594;
+  --accent: #c09625;
+  --accent-foreground: #252715;
+  --border: #434729;
+  --input: #434729;
+  --ring: #c09625;
 }
 
 @layer base {
@@ -142,10 +140,36 @@
   }
 }
 
-@utility font-display { font-family: var(--font-display); letter-spacing: 0.01em; text-transform: uppercase; line-height: 0.95; }
-@utility pattern-geo {
-  background-image: repeating-linear-gradient(45deg, color-mix(in oklab, currentColor 6%, transparent) 0 2px, transparent 2px 22px), repeating-linear-gradient(-45deg, color-mix(in oklab, currentColor 6%, transparent) 0 2px, transparent 2px 22px);
+@utility font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 0.96;
 }
-@utility poster { box-shadow: 6px 6px 0 oklch(0.13 0.02 42); transition: transform .25s, box-shadow .25s; &:hover { transform: translate(-4px,-4px) rotate(-1deg); box-shadow: 12px 12px 0 oklch(0.13 0.02 42); } }
-html { scroll-behavior: smooth; }
-body { font-family: var(--font-sans); }
+
+@utility pattern-geo {
+  background-image: url("/grafismo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.09;
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, black 35%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 50%, black 35%, transparent 100%);
+}
+
+@utility poster {
+  box-shadow: 6px 6px 0 #17190d;
+  transition: transform 0.25s, box-shadow 0.25s;
+  &:hover {
+    transform: translate(-4px, -4px) rotate(-0.5deg);
+    box-shadow: 12px 12px 0 #17190d;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+}
